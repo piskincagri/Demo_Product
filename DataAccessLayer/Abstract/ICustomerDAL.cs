@@ -7,16 +7,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
- public   interface ICustomerDAL
+ public   interface ICustomerDAL:IGenericDAL<Customer>
     {
 
 
-        void Insert(Customer p);
-
-        void Delete(Customer p);
-
-        void Update(Customer p);
-
-        List<Customer> GetList();
     }
 }

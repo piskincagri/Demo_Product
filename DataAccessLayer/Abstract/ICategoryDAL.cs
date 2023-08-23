@@ -7,14 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-   public interface ICategoryDAL
+   public interface ICategoryDAL:IGenericDAL<Category>
     {
-        void Insert(Category p);
-
-        void Delete(Category p);
-
-        void Update(Category p);
-
-        List<Category> GetList();
+       
     }
 }
