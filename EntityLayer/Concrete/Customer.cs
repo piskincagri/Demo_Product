@@ -14,5 +14,12 @@ namespace EntityLayer.Concrete
 
         public string CustomerCity { get; set; }
 
+        public int JobID { get; set; }
+
+       
+        public Job Job { get; set; }
+
+    
+
     }
 }
