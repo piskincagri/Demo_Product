@@ -9,5 +9,7 @@ namespace BusinessLayer.Abstract
 {
     interface ICustomerService:IGenericService<Customer>
     {
+        List<Customer> GetCustomerListWithJob();
+
     }
 }

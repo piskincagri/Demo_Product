@@ -4,6 +4,7 @@ using DataAccessLayer.Repositories.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace Demo_Product.Controllers
 {
     public class CustomerController : Controller
     {
-
+        JobManager jobManager = new JobManager(new EfJopDAL());
         CustomerManager customerManager = new CustomerManager(new EfCustomerDAL());
         public IActionResult Index()
         {
-            var values = customerManager.TGetList();
+            var values = customerManager.GetCustomerListWithJob();
 
             return View(values);
         }
@@ -25,7 +26,18 @@ namespace Demo_Product.Controllers
         public IActionResult AddCustomer()
         {
 
-            return View();
+           
+            List<SelectListItem> values = (from x in jobManager.TGetList()
+                                          select new SelectListItem
+                                          {
+                                              Text=x.JobName,
+                                              Value=x.JobID.ToString()
+
+                                          }).ToList();
+
+            ViewBag.v = values;
+                return View();
+           
         }
         [HttpPost]
         public IActionResult AddCustomer(Customer p)
@@ -65,6 +77,17 @@ namespace Demo_Product.Controllers
         [HttpGet]
         public IActionResult UpdateCustomer(int id)
         {
+            List<SelectListItem> values = (from x in jobManager.TGetList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.JobName,
+                                               Value = x.JobID.ToString()
+
+                                           }).ToList();
+
+            ViewBag.v = values;
+
+
             var value = customerManager.TGetById(id);
             return View(value);
            

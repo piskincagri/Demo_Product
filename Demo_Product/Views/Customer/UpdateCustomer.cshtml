@@ -16,6 +16,11 @@
     @Html.Label("Müşteri Şehir")
     @Html.TextAreaFor(x => x.CustomerCity, new { @class = "form-control" })
     <br />
+    @Html.Label("Meslek")
+    @Html.DropDownListFor(x => x.JobID, (List<SelectListItem>)ViewBag.v, new { @class = "form-control" })
+
+    <br />
+
 
     <button class="btn btn-info">Müşteri Güncelle</button>
 
