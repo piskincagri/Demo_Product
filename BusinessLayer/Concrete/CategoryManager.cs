@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class CategoryManager : ICategoryService
+    public class CategoryManager : IGenericService<Category>
     {
 
         ICategoryDAL _categoryDAL;
